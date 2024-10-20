@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json({ limit: '100mb' }));
 app.use(cors({
-    origin: '*',
+    origin: 'http://localhost:3000',
     methods: ["POST", "GET", "DELETE"],
     credentials: true
 }));
