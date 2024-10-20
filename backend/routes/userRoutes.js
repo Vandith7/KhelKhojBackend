@@ -386,7 +386,7 @@ router.post('/login', (req, res) => {
                     // res.cookie('user_token', user_token);
                     res.cookie('user_token', user_token, {
                         httpOnly: true,  // Ensure the cookie is not accessible by JavaScript (for security)
-                        secure: true,    // Use 'true' in production if you're using HTTPS
+                        secure: false,    // Use 'true' in production if you're using HTTPS
                         sameSite: 'None' // Required for cross-origin requests (especially if frontend/backend are on different domains)
                     });
                     return res.json({ status: "Success" });
