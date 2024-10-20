@@ -14,9 +14,7 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
-app.use('/', (req, res) => {
-    res.json({ message: "Hello welcome to khelkhoj" });
-});
+
 
 app.use('/user', userRoutes);
 app.use('/club', clubRoutes);
