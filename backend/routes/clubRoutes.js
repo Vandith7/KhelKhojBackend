@@ -385,7 +385,12 @@ router.post('/login', (req, res) => {
                     const profile_photo = data[0].profile_photo
                     const club_id = data[0].club_id
                     const club_token = jwt.sign({ name }, clubTokenSecretKey, { expiresIn: '1d' });
-                    res.cookie('club_token', club_token);
+                    // res.cookie('club_token', club_token);
+                    res.cookie('user_token', club_token, {
+                        httpOnly: true,  // Ensure the cookie is not accessible by JavaScript (for security)
+                        secure: true,    // Use 'true' in production if you're using HTTPS
+                        sameSite: 'None' // Required for cross-origin requests (especially if frontend/backend are on different domains)
+                    });
                     return res.json({ status: "Success" });
                 } else {
                     return res.status(500).json({ error: "Password not matched" });
