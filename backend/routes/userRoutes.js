@@ -473,7 +473,11 @@ router.get('/', verifyUser, (req, res) => {
 
 // User Logout Route
 router.get('/logout', (req, res) => {
-    res.clearCookie('user_token');
+    res.clearCookie('user_token', {
+        httpOnly: true,  // Ensure the cookie is not accessible by JavaScript (for security)
+        secure: true,    // Use 'true' in production if you're using HTTPS
+        sameSite: 'none' // Required for cross-origin requests (especially if frontend/backend are on different domains)
+    });
     return res.json({ status: "Success" });
 });
 router.get('/grounds', (req, res) => {
